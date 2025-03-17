@@ -2,7 +2,9 @@
 
 > [!IMPORTANT]  
 > There is only one test user fed within database:
+> 
 > Email: oneaalinx@gmail.com
+> 
 > Password: unbreakable-pass
 
 Client could be easily run locally by following the next steps:
