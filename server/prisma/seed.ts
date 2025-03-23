@@ -1,4 +1,6 @@
 import { PrismaClient } from "@prisma/client";
+import * as bcrypt from 'bcrypt';
+
 
 const prisma = new PrismaClient();
 
@@ -24,10 +26,15 @@ const main = async () => {
     await prisma.$queryRaw`ALTER SEQUENCE public."User_id_seq" RESTART WITH 1;`
     await prisma.$queryRaw`ALTER SEQUENCE public."Invoice_id_seq" RESTART WITH 1;`
 
+    const saltOrRounds = 10;
+    const password = 'unbreakable-pass';
+    
+    const hashedPassword = await bcrypt.hash(password, saltOrRounds);
+
     const user = await prisma.user.create({
       data: {
         email: 'oneaalinx@gmail.com',
-        password: 'unbreakable-pass',
+        password: hashedPassword,
         name: 'Alin Onea',
       },
     });

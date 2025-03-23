@@ -1,4 +1,4 @@
-import { Injectable, Logger } from '@nestjs/common';
+import { Injectable, InternalServerErrorException, Logger } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { User } from './entities/user.entity';
 
@@ -18,7 +18,7 @@ export class UsersService {
         } catch(e) {
             this.logger.error(`Error on find user by email: ${e}`);
 
-            return null;
+            throw new InternalServerErrorException(e);
         }
     }
 }

@@ -1,16 +1,18 @@
 import { Backdrop, Box, Button, Checkbox, Fade, Modal, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from '@mui/material';
-import React, { FC, useEffect, useState } from 'react';
-import { Invoice } from '../types';
+import { FC, useState } from 'react';
+import { useInvoice } from '../queries/InvoiceQueries';;
 
 type InvoicesListProps = {
-    invoice: Invoice;
+    invoiceId: number;
     handleClose: () => void;
     open: boolean;
 }
 
 const InvoiceModal: FC<InvoicesListProps> = (props) => {
-    const {invoice, handleClose, open} = props;
+    const {invoiceId, handleClose, open} = props;
 
+    const invoice = useInvoice(invoiceId).data;
+    
     const style = {
         position: 'absolute',
         top: '50%',
@@ -34,19 +36,19 @@ const InvoiceModal: FC<InvoicesListProps> = (props) => {
         >
             <Box sx={style}>
             <Typography id="modal-modal-title" variant="h6" component="h2">
-                Vendor: {invoice.vendor_name}
+                Vendor: {invoice && invoice.vendor_name}
             </Typography>
             <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-               Description: {invoice.description}
+               Description: {invoice &&invoice.description}
             </Typography>
             <Typography>
-               Amount: {invoice.amount}
+               Amount: {invoice && invoice.amount}
             </Typography>
             <Typography>
-               Due date: {(new Date(invoice.due_date)).toDateString()}
+               Due date: {invoice && (new Date(invoice.due_date)).toDateString()}
             </Typography>
             <Typography>
-               Paid: {invoice.paid ? 'Yes': 'No'}
+               Paid: {invoice && invoice.paid ? 'Yes': 'No'}
             </Typography>
             </Box>
         </Modal>

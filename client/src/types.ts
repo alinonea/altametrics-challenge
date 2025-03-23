@@ -6,3 +6,8 @@ export type Invoice = {
     description: string;
     paid: boolean;
 }
+
+export type UserLogin = {
+    email: string;
+    password: string;
+}

@@ -1,4 +1,4 @@
-import { Injectable, Logger } from '@nestjs/common';
+import { Injectable, InternalServerErrorException, Logger } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { Invoice } from './entities/invoice.entity';
 
@@ -18,7 +18,7 @@ export class InvoicesService {
     } catch(e) {
       this.logger.error(`Error on find all invoices: ${e}`);
 
-      return null;
+      throw new InternalServerErrorException(e);
     }
 
   }
@@ -33,7 +33,7 @@ export class InvoicesService {
     } catch(e) {
       this.logger.error(`Error on find all invoices: ${e}`);
 
-      return null;
+      throw new InternalServerErrorException(e);
     }
   }
 }

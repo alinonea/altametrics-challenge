@@ -20,7 +20,6 @@ const Home: FC<HomeProps> = ({}) => {
     const login = async() => {
         const response = await axios.post(`http://localhost:3001/auth/login`, { email, password})
 
-        console.log(response.data)
         dispatch(set(response.data.access_token));
     }
 

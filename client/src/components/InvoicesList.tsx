@@ -1,14 +1,25 @@
 import { Checkbox, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
 import React, { FC, useEffect, useState } from 'react';
+import { useInvoices } from '../queries/InvoiceQueries';
+import InvoiceModal from './InvoiceModal';
 import { Invoice } from '../types';
 
 type InvoicesListProps = {
-    invoices: Invoice[]
-    handleOpen: (invoiceId: number) => void;
+    invoices: Invoice[] | [];
 }
 
 const InvoicesList: FC<InvoicesListProps> = (props) => {
-    const {invoices, handleOpen} = props;
+    const { invoices } = props;
+    const [modalOpen, setModalOpen] = useState(false);
+    const [invoiceId, setInvoiceId] = useState<number>(0);
+
+    const handleOpen = (invoiceId: number) => {
+        setInvoiceId(invoiceId);
+
+        setModalOpen(true);
+    }
+    
+    const handleClose = () => setModalOpen(false);
 
     return (
         <div className='flex flex-col h-screen justify-center items-center p-8'>
@@ -24,7 +35,7 @@ const InvoicesList: FC<InvoicesListProps> = (props) => {
                     </TableRow>
                     </TableHead>
                     <TableBody>
-                    {invoices.map((invoice) => (
+                    {invoices && invoices.map((invoice) => (
                         <TableRow
                         key={invoice.id}
                         sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
@@ -44,6 +55,7 @@ const InvoicesList: FC<InvoicesListProps> = (props) => {
                     </TableBody>
                 </Table>
             </TableContainer>
+            <InvoiceModal handleClose={handleClose} open={modalOpen} invoiceId={invoiceId}/>
         </div>
     )
 };
