@@ -11,3 +11,13 @@ export type UserLogin = {
     email: string;
     password: string;
 }
+
+export type ServerError = {
+    statusCode: number,
+    message: string,
+    error: string
+}
+
+export type LoginResponse = {
+    access_token: string
+}

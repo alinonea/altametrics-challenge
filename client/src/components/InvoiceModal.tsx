@@ -1,5 +1,5 @@
-import { Backdrop, Box, Button, Checkbox, Fade, Modal, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from '@mui/material';
-import { FC, useState } from 'react';
+import { Box, Modal, Typography } from '@mui/material';
+import { FC } from 'react';
 import { useInvoice } from '../queries/InvoiceQueries';;
 
 type InvoicesListProps = {
@@ -21,6 +21,7 @@ const InvoiceModal: FC<InvoicesListProps> = (props) => {
         width: 800,
         bgcolor: 'background.paper',
         border: '2px solid #000',
+        color: 'black',
         borderRadius: '15px',
         boxShadow: 24,
         p: 4,

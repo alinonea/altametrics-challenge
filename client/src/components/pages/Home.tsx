@@ -1,9 +1,9 @@
-import axios from 'axios';
-import React, { FC, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { set } from '../../slices/access_token';
+import { FC, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { userLogIn } from '../../slices/access_token';
 import { useNavigate } from 'react-router-dom';
 import { z } from "zod";
+import axiosClient from '../../../api/axiosClient';
 
 type HomeProps = {}
 
@@ -18,9 +18,9 @@ const Home: FC<HomeProps> = ({}) => {
     const navigate = useNavigate();
 
     const login = async() => {
-        const response = await axios.post(`http://localhost:3001/auth/login`, { email, password})
+        const response = await axiosClient.post('/auth/login', { email, password})
 
-        dispatch(set(response.data.access_token));
+        dispatch(userLogIn(response.data.access_token));
     }
 
     const validateInputs = (email: string) => {

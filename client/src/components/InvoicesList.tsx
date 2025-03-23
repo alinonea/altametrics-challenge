@@ -1,6 +1,5 @@
 import { Checkbox, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
-import React, { FC, useEffect, useState } from 'react';
-import { useInvoices } from '../queries/InvoiceQueries';
+import { FC, useState } from 'react';
 import InvoiceModal from './InvoiceModal';
 import { Invoice } from '../types';
 
@@ -18,6 +17,8 @@ const InvoicesList: FC<InvoicesListProps> = (props) => {
 
         setModalOpen(true);
     }
+
+    console.log(invoiceId);
     
     const handleClose = () => setModalOpen(false);
 
@@ -39,7 +40,7 @@ const InvoicesList: FC<InvoicesListProps> = (props) => {
                         <TableRow
                         key={invoice.id}
                         sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                        className="dark:bg-gray-800 dark:border-gray-700"
+                        className="dark:bg-gray-600 dark:border-gray-700"
                         component={'tr'}
                         onClick={() => { handleOpen(invoice.id) }}
                         >

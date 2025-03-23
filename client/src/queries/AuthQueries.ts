@@ -1,10 +1,11 @@
 import {useMutation, UseMutationResult } from '@tanstack/react-query';
 import AuthService from '../services/AuthService';
-import { UserLogin } from '../types';
+import { LoginResponse, ServerError, UserLogin } from '../types';
+import { AxiosResponse } from 'axios';
 
-export const useCreateProduct = (): UseMutationResult<{ access_token: string}, { message: string}, UserLogin> => {
+export const doLogin = (): UseMutationResult<AxiosResponse< LoginResponse, any>, Error, UserLogin> => {
   return useMutation({
-    mutationFn: (user) => AuthService.login(user),
+    mutationFn: (user: UserLogin) => AuthService.login(user),
     meta: {
       successMessage: 'Successfully logged in',
       errorMessage: 'Failed to login',

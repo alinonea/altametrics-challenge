@@ -1,5 +1,5 @@
 import './App.css'
-import { createBrowserRouter, createRoutesFromElements, Route, Router, RouterProvider } from 'react-router-dom'
+import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } from 'react-router-dom'
 import Home from './components/pages/Home'
 import Invoices from './components/pages/Invoices'
 import { queryClient } from '../api/reactQueryClient';

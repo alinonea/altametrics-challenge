@@ -13,12 +13,12 @@ export const accessTokenSlice = createSlice({
   name: 'access_token',
   initialState,
   reducers: {
-    set: (state, action: PayloadAction<string>) => {
+    userLogIn: (state, action: PayloadAction<string>) => {
       state.access_token = action.payload
     },
   },
 })
 
-export const { set } = accessTokenSlice.actions
+export const { userLogIn } = accessTokenSlice.actions
 
 export default accessTokenSlice.reducer
