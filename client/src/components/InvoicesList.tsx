@@ -18,8 +18,6 @@ const InvoicesList: FC<InvoicesListProps> = (props) => {
         setModalOpen(true);
     }
 
-    console.log(invoiceId);
-    
     const handleClose = () => setModalOpen(false);
 
     return (

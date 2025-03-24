@@ -1,6 +1,6 @@
 import {useMutation, UseMutationResult } from '@tanstack/react-query';
 import AuthService from '../services/AuthService';
-import { LoginResponse, ServerError, UserLogin } from '../types';
+import { LoginResponse, UserLogin } from '../types';
 import { AxiosResponse } from 'axios';
 
 export const doLogin = (): UseMutationResult<AxiosResponse< LoginResponse, any>, Error, UserLogin> => {
